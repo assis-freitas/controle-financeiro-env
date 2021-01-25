@@ -1,0 +1,7 @@
+{
+  "name": "app-controle-financeiro-ionic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
