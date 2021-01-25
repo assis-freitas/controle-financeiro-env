@@ -1,9 +1,16 @@
 <template>
-    <button ref="buttonElement" :type="type" class="btn" :class="btnClassConfig" @click="click">
-        <slot>
-            <FontAwesomeIcon :icon="icon" /> {{ label }}
-        </slot>
-    </button>
+    <span>
+        <button v-if="!href" ref="buttonElement" :type="type" class="btn" :class="btnClassConfig" @click="click">
+            <slot>
+                <FontAwesomeIcon v-if="icon" :icon="icon" /> {{ label }}
+            </slot>
+        </button>
+        <a v-if="href" ref="buttonElement" class="btn" :class="btnClassConfig" @click="click">
+            <slot>
+                <FontAwesomeIcon v-if="icon" :icon="icon" /> {{ label }}
+            </slot>
+        </a>
+    </span>
 </template>
 
 <script lang="ts">
@@ -36,6 +43,9 @@ class Button extends Vue {
     @Prop()
     design: string|undefined;
 
+    @Prop()
+    href: string|undefined;
+
     @Prop({
         default: 'circle'
     })
@@ -63,7 +73,7 @@ class Button extends Vue {
 export default Button;
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .btn {
         cursor: pointer;
         margin: 1vh 0;
